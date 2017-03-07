@@ -64,7 +64,7 @@ function loopThroughHandle(animation) {
 //loopThrough2();
 //loopThrough3();
 //loopThrough4();
-//loopThrough5();
+loopThrough5();
 
 function loopThrough2() {
     var i;

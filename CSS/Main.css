@@ -277,6 +277,7 @@ ul.dropMenu.menu4 li {
 }
 
 li:hover > ul.dropMenu.menu5 li {
+    display: block;
     opacity: 0;
     animation: menu5;
     animation-duration: 300ms;
