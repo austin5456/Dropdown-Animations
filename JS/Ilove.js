@@ -19,28 +19,28 @@ var animation0 = {
 var animation1 = {
     duration: 300,
     durationCompile: "",
-    delay: 150,
+    delay: 0,
     delayCompile: 150,
     index: 1
 };
 var animation2 = {
     duration: 250,
     durationCompile: "",
-    delay: 150,
+    delay: 0,
     delayCompile: 125,
     index: 2
 };
 var animation3 = {
     duration: 250,
     durationCompile: 10,
-    delay: 150,
+    delay: 0,
     delayCompile: 125,
     index: 3,
 };
 var animation4 = {
     duration: 200,
     durationCompile: 100,
-    delay: 150,
+    delay: 0,
     delayCompile: 150,
     index: 4
 };
@@ -59,24 +59,7 @@ function loopThroughHandle(animation) {
         loopThrough(window[animation]);
     }
 }
-/*
-function loopThrough(animation) {
-    var i;
-    var duration = animation.duration;
-    var delay = animation.delay;
-    var durationCompile = animation.durationCompile;
-    var delayCompile = animation.delayCompile;
-    for (i = 0; i <= firstUl.children.length -1; i++) {
-        console.log(i);
-        dropMenu.children[i].style.display = "block"
-        firstUl.children[i].style.animationDuration = duration + "ms";
-        secondUl.children[i].style.animationDelay = delay + "ms";
-        duration += durationCompile;
-        delay += delayCompile;
-    }
-}
 
-*/
 //loopThrough1();
 //loopThrough2();
 //loopThrough3();
@@ -91,7 +74,6 @@ function loopThrough2() {
         console.log(i);
         secondUl.children[i].style.animationDuration = duration + "ms";
         secondUl.children[i].style.animationDelay = delay + "ms";
-      //  duration += 1000;
         delay += 150;
         console.log(duration + " / " + delay)
     }
@@ -106,7 +88,6 @@ function loopThrough3() {
         console.log(i);
         thirdUl.children[i].style.animationDuration = duration + "ms";
         thirdUl.children[i].style.animationDelay = delay + "ms";
-        //duration += 300;
         delay += 125;
         console.log(duration + " / " + delay)
     }
@@ -141,18 +122,6 @@ function loopThrough5() {
         console.log(duration + " / " + delay)
     }
 }
-//var list1 = document.getElementById("listA");
-//list1.addEventListener("mouseover", function () {
-  //  alert("success");
-    //console.log(list1.children);
-    //list1.children[0].style.display = "block";
-    //list1.children[0].style.height = "60px";
-    //list1.children[0].style.width = "120px";
-    //list1.children[0].style.backgroundColor = "red";
-
-//});
-
-
 // converting hover to on click
 
 /*
@@ -192,25 +161,54 @@ dropHolder.children[0].addEventListener("click", clickToggler);
 })(jQuery);
 
 */
+
 function loopThrough(animation) {
-    var i;
+
     var who = animation.index;
     var duration = animation.duration;
     var delay = animation.delay;
     var durationCompile = animation.durationCompile;
     var delayCompile = animation.delayCompile;
-    for (i = 0; i <= dropMenu[who].children.length - 1; i++) {
-        dropMenu[who].children[i].style.display = "block"
-        dropMenu[who].children[i].style.animationDuration = duration + "ms";
-        dropMenu[who].children[i].style.animationDelay = delay + "ms";
-        duration += durationCompile;
-        delay += delayCompile;
+
+    if (hasClass(dropMenu[who], "toBlock")) {
+        removeClass(dropMenu[who], "toBlock");
+        rmDisplay();
+    }
+    else {
+        addClass(dropMenu[who] ,"toBlock");
+        displayIt();
+    }
+
+    function displayIt() {
+        var i;
+        for (i = 0; i <= dropMenu[who].children.length - 1; i++) {
+            dropMenu[who].children[i].style.display = "block"
+            dropMenu[who].children[i].style.animationDuration = duration + "ms";
+            dropMenu[who].children[i].style.animationDelay = delay + "ms";
+            duration += durationCompile;
+            delay += delayCompile;
+        }
+    }
+
+    function rmDisplay() {
+        var i;
+        for (i = 0; i <= dropMenu[who].children.length - 1; i++) {
+            dropMenu[who].children[i].style.display = "none";
+        }
     }
 }
 
-function rmLoopThrough() {
-    var i;
-    for (i = 0; i <= firstUl.children.length - 1; i++) {
-        dropMenu[0].children[i].style.display = "none";
-    }
+function removeClass(elem, cls) {
+    var str = " " + elem.className + " ";
+    elem.className = str.replace(" " + cls + " ", " ").replace(/^\s+|\s+$/g, "");
 }
+function addClass(elem, cls) {
+    elem.className += (" " + cls);
+}
+function hasClass(elem, cls) {
+    var str = " " + elem.className + " ";
+    var testCls = " " + cls + " ";
+    return (str.indexOf(testCls) != -1);
+}
+
+addingEvents(dropHolder);
