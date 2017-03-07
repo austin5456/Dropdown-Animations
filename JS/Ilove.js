@@ -125,6 +125,6 @@ function loopThrough5() {
             }
         }
     }
-dropHolder.addEventListener("click", clickToggler);
+dropHolder.children[0].addEventListener("click", clickToggler);
 
 })(jQuery);
