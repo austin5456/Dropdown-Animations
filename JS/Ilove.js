@@ -5,7 +5,9 @@ var thirdUl = document.getElementsByClassName("menu3")[0];
 var forthUl = document.getElementsByClassName("menu4")[0];
 var fithUl = document.getElementsByClassName("menu5")[0];
 
-
+var dropHolder = document.getElementsByClassName("dropHolder")[0];
+var dropMenu = document.getElementsByClassName("dropMenu")[0];
+/*
 function loopThrough1() {
     var i;
     var duration = 300;
@@ -15,10 +17,13 @@ function loopThrough1() {
         duration += 150;
     }
 }
-loopThrough1();
-loopThrough2();
-loopThrough3();
-loopThrough4();
+
+*/
+//loopThrough1();
+//loopThrough2();
+//loopThrough3();
+//loopThrough4();
+//loopThrough5();
 
 function loopThrough2() {
     var i;
@@ -88,4 +93,38 @@ function loopThrough5() {
     //list1.children[0].style.backgroundColor = "red";
 
 //});
-//alert("working");
+
+
+// converting hover to on click
+(function ($) {
+    function clickToggler() {
+
+        if ($(dropMenu).hasClass("toBlock")) {
+            $(dropMenu).removeClass("toBlock");
+            rmLoopThrough1();
+        }
+        else {
+            $(dropMenu).addClass("toBlock");
+            loopThrough1();
+        }
+
+        function loopThrough1() {
+            var i;
+            var duration = 300;
+            for (i = 0; i <= firstUl.children.length - 1; i++) {
+                dropMenu.children[i].style.display = "block";
+                firstUl.children[i].style.animationDuration = duration + "ms";
+                duration += 150;
+            }
+        }
+
+        function rmLoopThrough1() {
+            var i;
+            for (i = 0; i <= firstUl.children.length - 1; i++) {
+                dropMenu.children[i].style.display = "none";
+            }
+        }
+    }
+dropHolder.addEventListener("click", clickToggler);
+
+})(jQuery);
