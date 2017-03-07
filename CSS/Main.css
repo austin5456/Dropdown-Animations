@@ -160,7 +160,7 @@ ul.dropMenu.menu1 li {
     }
 }
 
-li:hover > ul.dropMenu.menu2 li {
+ul.dropMenu.menu2 li {
     opacity: 0;
     animation: menu2;
     transform-origin: top center;
@@ -201,7 +201,7 @@ li:hover > ul.dropMenu.menu2 li {
     }
 }
 
-li:hover > ul.dropMenu.menu3 li {
+ul.dropMenu.menu3 li {
     opacity: 0;
     animation: menu3;
     animation-duration: 300ms;
@@ -245,7 +245,7 @@ li:hover > ul.dropMenu.menu3 li {
     }
 }
 
-li:hover > ul.dropMenu.menu4 li {
+ul.dropMenu.menu4 li {
     opacity: 0;
     animation: menu4;
     animation-duration: 300ms;

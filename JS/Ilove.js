@@ -6,15 +6,73 @@ var forthUl = document.getElementsByClassName("menu4")[0];
 var fithUl = document.getElementsByClassName("menu5")[0];
 
 var dropHolder = document.getElementsByClassName("dropHolder")[0];
-var dropMenu = document.getElementsByClassName("dropMenu")[0];
-/*
-function loopThrough1() {
+var dropMenu = document.getElementsByClassName("dropMenu");
+
+
+var animation0 = {
+    duration: 300,
+    durationCompile: 150,
+    delay: "",
+    delayCompile: "",
+    index: 0
+};
+var animation1 = {
+    duration: 300,
+    durationCompile: "",
+    delay: 150,
+    delayCompile: 150,
+    index: 1
+};
+var animation2 = {
+    duration: 250,
+    durationCompile: "",
+    delay: 150,
+    delayCompile: 125,
+    index: 2
+};
+var animation3 = {
+    duration: 250,
+    durationCompile: 10,
+    delay: 150,
+    delayCompile: 125,
+    index: 3,
+};
+var animation4 = {
+    duration: 200,
+    durationCompile: 100,
+    delay: 150,
+    delayCompile: 150,
+    index: 4
+};
+
+var animationList = [animation0, animation1, animation2, animation3, animation4];
+
+function addingEvents(item) {
     var i;
-    var duration = 300;
+    for (i = 0; i <= item.children.length - 1; i++) {
+        item.children[i].addEventListener("click", loopThroughHandle("animation" + i));
+    }
+}
+
+function loopThroughHandle(animation) {
+    return function () {
+        loopThrough(window[animation]);
+    }
+}
+/*
+function loopThrough(animation) {
+    var i;
+    var duration = animation.duration;
+    var delay = animation.delay;
+    var durationCompile = animation.durationCompile;
+    var delayCompile = animation.delayCompile;
     for (i = 0; i <= firstUl.children.length -1; i++) {
         console.log(i);
+        dropMenu.children[i].style.display = "block"
         firstUl.children[i].style.animationDuration = duration + "ms";
-        duration += 150;
+        secondUl.children[i].style.animationDelay = delay + "ms";
+        duration += durationCompile;
+        delay += delayCompile;
     }
 }
 
@@ -96,6 +154,8 @@ function loopThrough5() {
 
 
 // converting hover to on click
+
+/*
 (function ($) {
     function clickToggler() {
 
@@ -112,7 +172,7 @@ function loopThrough5() {
             var i;
             var duration = 300;
             for (i = 0; i <= firstUl.children.length - 1; i++) {
-                dropMenu.children[i].style.display = "block";
+                dropMenu[0].children[i].style.display = "block";
                 firstUl.children[i].style.animationDuration = duration + "ms";
                 duration += 150;
             }
@@ -121,10 +181,36 @@ function loopThrough5() {
         function rmLoopThrough1() {
             var i;
             for (i = 0; i <= firstUl.children.length - 1; i++) {
-                dropMenu.children[i].style.display = "none";
+                dropMenu[0].children[i].style.display = "none";
             }
         }
     }
 dropHolder.children[0].addEventListener("click", clickToggler);
 
+
+
 })(jQuery);
+
+*/
+function loopThrough(animation) {
+    var i;
+    var who = animation.index;
+    var duration = animation.duration;
+    var delay = animation.delay;
+    var durationCompile = animation.durationCompile;
+    var delayCompile = animation.delayCompile;
+    for (i = 0; i <= dropMenu[who].children.length - 1; i++) {
+        dropMenu[who].children[i].style.display = "block"
+        dropMenu[who].children[i].style.animationDuration = duration + "ms";
+        dropMenu[who].children[i].style.animationDelay = delay + "ms";
+        duration += durationCompile;
+        delay += delayCompile;
+    }
+}
+
+function rmLoopThrough() {
+    var i;
+    for (i = 0; i <= firstUl.children.length - 1; i++) {
+        dropMenu[0].children[i].style.display = "none";
+    }
+}
